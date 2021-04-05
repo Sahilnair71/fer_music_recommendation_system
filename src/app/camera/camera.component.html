@@ -1,0 +1,41 @@
+<div *ngIf="isCameraExist; else noCameraExist">
+  <div style="text-align: center">
+    <div class="btn-group">
+      <div *ngIf="this.check_value_of_expression == false">
+        <button class="button" (click)="takeSnapshot()">Take Picture</button>
+        <button class="button" (click)="changeWebCame(true)">
+          Toggle Camera
+        </button>
+        <button class="button" (click)="onOffWebCame()">on/off camera</button>
+      </div>
+    </div>
+    <br />
+    <webcam
+      [height]="500"
+      [width]="1000"
+      [trigger]="triggerObservable"
+      (imageCapture)="handleImage($event)"
+      *ngIf="showWebcam"
+      [switchCamera]="nextWebcamObservable"
+    ></webcam>
+    <div *ngIf="this.check_value_of_expression == true">
+      <h1>
+        Sorry !! <br />
+        Your face was not recognized....Please retry again
+      </h1>
+      <button class="button" (click)="onOffWebCame()">Retry</button>
+    </div>
+  </div>
+
+  <div *ngIf="errors.length > 0">
+    <h4>Error Messages:</h4>
+    <ul *ngFor="let error of errors">
+      <li>{{ error | json }}</li>
+    </ul>
+  </div>
+</div>
+<!-- <div>
+  <img [src]="this.display_image" />
+</div> -->
+
+<ng-template #noCameraExist> Camera device not available </ng-template>
