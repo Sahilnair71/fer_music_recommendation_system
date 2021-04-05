@@ -62,6 +62,7 @@ export class CameraComponent implements OnInit {
 
   handleInitError(error: WebcamInitError) {
     this.errors.push(error);
+    console.log(error);
   }
 
   changeWebCame(directionOrDeviceId: boolean | string) {
