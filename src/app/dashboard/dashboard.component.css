@@ -1,0 +1,30 @@
+.for-forms {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.formblock {
+  display: block;
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+.flex {
+  display: flex;
+  flex-direction: row;
+}
+.button {
+  margin-bottom: 10px;
+}
+.flex_card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button_add {
+  width: 120px;
+}

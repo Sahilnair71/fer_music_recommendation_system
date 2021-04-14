@@ -1,0 +1,112 @@
+<div class="for-forms" *ngIf="suceesfullyUploaded == false">
+  <mat-card mat-elevation-z12>
+    <form [formGroup]="addSongs" class="formblock">
+      <mat-form-field appearance="legacy" class="formblock">
+        <mat-label>Enter song name..</mat-label>
+        <input matInput placeholder="song.." formControlName="song" />
+        <mat-icon matSuffix>audiotrack</mat-icon>
+      </mat-form-field>
+      <mat-form-field appearance="legacy" class="formblock">
+        <mat-label>Enter Artist's name..</mat-label>
+        <input matInput placeholder="artist.." formControlName="artist" />
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+      <mat-radio-group
+        aria-labelledby="example-radio-group-label"
+        class="example-radio-group"
+        formControlName="type"
+      >
+        <mat-radio-button
+          class="example-radio-button"
+          *ngFor="let expression of expressions"
+          [value]="expression"
+        >
+          {{ expression }}
+        </mat-radio-button>
+      </mat-radio-group>
+
+      <br /><br />
+      <div class="flex">
+        <input
+          type="file"
+          (change)="onFileChangeforSongs($event)"
+          placeholder="artist.."
+          class="formblock"
+        />
+
+        <button mat-raised-button (click)="uploadSongs()">
+          <mat-icon>cloud_upload</mat-icon>
+          .mp3 file
+        </button>
+      </div>
+
+      <br />
+      <div *ngIf="percentage | async as pct">
+        <progress [value]="pct" max="100"></progress>
+        {{ pct | number }}%
+      </div>
+
+      <h3>Upload thumbnail for the given song</h3>
+      <div class="flex">
+        <input
+          type="file"
+          (change)="onFileChange($event)"
+          placeholder="artist.."
+          class="formblock"
+        />
+
+        <button mat-raised-button (click)="uploadImage()">
+          <mat-icon>cloud_upload</mat-icon>
+          .jpg file
+        </button>
+      </div>
+      <br />
+      <div *ngIf="percentage_image | async as pct_img">
+        <progress [value]="pct_img" max="100"></progress>
+        {{ pct_img | number }}%
+      </div>
+
+      <button
+        mat-raised-button
+        color="primary"
+        class="login-button"
+        type="submit"
+        class="formblock"
+        (click)="submitForm()"
+      >
+        ADD
+      </button>
+    </form>
+  </mat-card>
+</div>
+<div *ngIf="isloading">
+  <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+</div>
+<div class="for-forms" *ngIf="suceesfullyUploaded">
+  <mat-card mat-elevation-z12>
+    <mat-card-title>ADD MORE SONGS</mat-card-title>
+
+    <div>
+      <div class="flex_card">
+        <button mat-fab color="primary" class="flex_card" (click)="addsongs()">
+          <mat-icon>add_to_photos</mat-icon>
+        </button>
+      </div>
+      <h2 class="flex_card">OR</h2>
+      <h1 class="flex_card">GO BACK</h1>
+      <div class="flex_card">
+        <button
+          mat-flat-button
+          color="primary"
+          class="button_add"
+          (click)="goback()"
+        >
+          Back
+        </button>
+      </div>
+    </div>
+  </mat-card>
+</div>
+
+<!-- accept=".mp3" -->
+<!-- (ngSubmit)="submitForm()" class="for-forms"    "-->

@@ -1,0 +1,24 @@
+<div class="for-forms">
+  <h3>Thank You For Registering</h3>
+  <div *ngIf="user">
+    <p>
+      WE have sent a verification mail to <strong>{{ user.email }}</strong>
+    </p>
+    <p>
+      Please check your email and click on the link to verfiy your email address
+    </p>
+  </div>
+  <div>
+    <button (click)="resend_email()" mat-button color="primary">
+      Resend verification Mail
+    </button>
+  </div>
+
+  <div class="display_inline">
+    <h5>
+      You will be directed to the login page in
+      <h1>{{ seconds }}</h1>
+      seconds
+    </h5>
+  </div>
+</div>

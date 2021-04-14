@@ -1,0 +1,14 @@
+.for-forms {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* height: 100vh; */
+  flex-direction: column;
+}
+.formcontrol {
+  display: block;
+}
+
+.display_inline {
+  display: inline;
+}
