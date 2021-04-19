@@ -5,7 +5,7 @@
   width: 100%;
   height: 100%;
   display: block;
-  /* background-color: #303f9f; */
+
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -30,14 +30,17 @@ mat-card-content {
 .login-button {
   margin-top: 20px;
   display: block;
-  width: 80%;
+  width: 85%;
   margin: 20px auto;
 }
 
-@media (max-width: 480px) {
+@media (max-width: 600px) {
   mat-card {
-    width: 50%;
-    margin: 10% auto;
+    width: 70%;
+    margin: 50% auto;
     border-radius: 8px;
+  }
+  mat-card-content {
+    margin-top: 10px;
   }
 }

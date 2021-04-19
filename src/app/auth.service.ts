@@ -22,7 +22,9 @@ export class AuthService {
   userEmail: any;
   songlist: Observable<Songs[]>;
   private itemsCollection: AngularFirestoreCollection<Songs>;
+  private songCollection: AngularFirestoreCollection<Songs>;
   items: Observable<Songs[]>;
+  songs: Observable<Songs[]>;
   constructor(
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
@@ -43,9 +45,13 @@ export class AuthService {
     // firebase querey for song
 
     this.itemsCollection = afs.collection<Songs>("MUSIC", (ref) =>
-      ref.orderBy("timestamp", "desc").limit(7)
+      ref.orderBy("timestamp", "desc").limit(3)
     );
     this.items = this.itemsCollection.valueChanges();
+    this.songCollection = afs.collection<Songs>("MUSIC", (ref) =>
+      ref.orderBy("timestamp", "desc")
+    );
+    this.songs = this.songCollection.valueChanges();
   }
 
   SignUp(UserVal) {
@@ -139,5 +145,8 @@ export class AuthService {
     //   return songSnapshot;
     // }
     return this.items;
+  }
+  getallSongs() {
+    return this.songs;
   }
 }

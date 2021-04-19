@@ -46,6 +46,8 @@ export class DashboardComponent implements OnInit {
   percentage_image: Observable<number>;
   songlist: Observable<any[]>;
   item: Songs[];
+  song: Songs[];
+
   expressions: string[] = [
     "Angry",
     "Disgust",
@@ -64,6 +66,9 @@ export class DashboardComponent implements OnInit {
       console.log(res);
       this.item = res;
       console.log("item =>", this.item);
+    });
+    this.authService.getallSongs().subscribe((res) => {
+      this.song = res;
     });
   }
   addSongs = new FormGroup({
@@ -156,7 +161,7 @@ export class DashboardComponent implements OnInit {
   }
 
   submitForm() {
-    this.showaddedSongs = true;
+    this.showaddedSongs = false;
     const date = new Date();
     const timestamp = date.getTime();
     let date_1 = new Date(timestamp);
@@ -183,6 +188,7 @@ export class DashboardComponent implements OnInit {
         .then((res) => {
           console.log("Success!");
           this.isloading = false;
+          this.showaddedSongs = true;
           this.suceesfullyUploaded = true;
           this.addSongs.reset();
           this.percentage = null;

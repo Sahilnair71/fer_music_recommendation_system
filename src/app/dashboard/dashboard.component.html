@@ -18,7 +18,7 @@
         formControlName="type"
       >
         <div class="row">
-          <div class="col-xs-4 col-sm-4 col-md-12 col-lg-4">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <mat-radio-button
               class="example-radio-button"
               *ngFor="let expression of expressions"
@@ -113,27 +113,55 @@
   </mat-card>
 </div>
 
-<!-- showing songs added to the database -->
+<!-- showing songs added to the database  -->
+<div class="for-forms_1 cardfont" *ngIf="showaddedSongs">
+  <h1>RECENTLY ADDED SONGS</h1>
+</div>
 <div class="row" *ngIf="showaddedSongs">
-  <div class="for-forms_1 cardfont">
-    <h1>HERE ARE THE ADDED SONGS</h1>
+  <!-- <div > -->
+  <div *ngFor="let song of item" class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+    <mat-card mat-elevation-z12 class="card-color">
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <img [src]="song.imageurl" />
+        </div>
+        <div class="card-content col-xs-6 col-sm-12 col-md-6 col-lg-6">
+          <p>Name:{{ song.song }}</p>
+          <p>Artist:{{ song.artist }}</p>
+          <p>Date added:{{ song.date }}</p>
+          <p>Time:{{ song.time }}</p>
+        </div>
+      </div>
+    </mat-card>
   </div>
-  <div *ngFor="let song of item">
-    <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-4">
-      <mat-card mat-elevation-z12 class="card-color">
-        <div class="row">
-          <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6">
-            <img [src]="song.imageurl" />
-          </div>
-          <div class="card-content col-xs-6 col-sm-12 col-md-6 col-lg-6">
-            <p>Name:{{ song.song }}</p>
-            <p>Artist:{{ song.artist }}</p>
-            <p>Date added:{{ song.date }}</p>
-            <p>Time:{{ song.time }}</p>
+  <!-- </div> -->
+</div>
+<div class="for-forms_1 cardfont" *ngIf="showaddedSongs">
+  <h1>LIST OF SONGS</h1>
+</div>
+
+<div class="row center-xs center-sm center-md center-lg" *ngIf="showaddedSongs">
+  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+    <mat-card mat-elevation-z12 class="card-color">
+      <mat-card-title> All Songs</mat-card-title>
+      <ul>
+        <div class="row center-xs center-sm center-md center-lg">
+          <div *ngFor="let songs of song">
+            <li>
+              <div
+                class="col-xs-12 col-sm-12 col-md-12 col-lg-12 cardfont fontSize"
+              >
+                <p>
+                  Name:&nbsp;{{ songs.song }}&nbsp;&nbsp;&nbsp; Artist:&nbsp;{{
+                    songs.artist
+                  }}
+                </p>
+              </div>
+            </li>
           </div>
         </div>
-      </mat-card>
-    </div>
+      </ul>
+    </mat-card>
   </div>
 </div>
 
