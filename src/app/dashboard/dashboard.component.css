@@ -2,7 +2,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  /* height: 100vh; */
+  margin-top: 10vh;
+  margin-bottom: 5vh;
 }
 
 .formblock {
@@ -27,4 +29,47 @@
 
 .button_add {
   width: 120px;
+}
+
+.flex_songCards {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+img {
+  background-size: cover;
+  height: 90%;
+  width: 90%;
+  border-radius: 50%;
+}
+.for-forms_1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 10vh;
+}
+.flex-row {
+  width: 100%;
+}
+.card-color {
+  background-color: rgb(243, 244, 246);
+  -moz-box-shadow: 3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow: 3px 3px 5px 6px #ccc;
+  margin: 20px;
+}
+.card-content {
+  margin: 0px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 100;
+}
+.formcolor {
+  background-color: rgb(243, 244, 246);
+}
+.cardfont {
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
 }

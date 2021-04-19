@@ -1,3 +1,5 @@
+import { Songs } from "./../songs";
+import { AuthService } from "./../auth.service";
 import { Component, OnInit } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/firestore";
 import { Observable } from "rxjs";
@@ -13,7 +15,7 @@ import {
 } from "@angular/fire/storage";
 import "firebase/storage";
 import { finalize } from "rxjs/operators";
-import "firebase/firestore";
+
 import { Router } from "@angular/router";
 
 @Component({
@@ -25,7 +27,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private storage: AngularFireStorage,
     private afs: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
   imageToUpload: File;
   songToUpload: File;
@@ -41,6 +44,8 @@ export class DashboardComponent implements OnInit {
   uploadSuccess: boolean = false;
   percentage: Observable<number>;
   percentage_image: Observable<number>;
+  songlist: Observable<any[]>;
+  item: Songs[];
   expressions: string[] = [
     "Angry",
     "Disgust",
@@ -51,8 +56,16 @@ export class DashboardComponent implements OnInit {
     "Neutral",
   ];
   isfull;
+  showaddedSongs = false;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // this.songlist = this.authService.getSongs();
+    this.authService.getSongs().subscribe((res) => {
+      console.log(res);
+      this.item = res;
+      console.log("item =>", this.item);
+    });
+  }
   addSongs = new FormGroup({
     song: new FormControl("", Validators.required),
     artist: new FormControl("", Validators.required),
@@ -143,6 +156,12 @@ export class DashboardComponent implements OnInit {
   }
 
   submitForm() {
+    this.showaddedSongs = true;
+    const date = new Date();
+    const timestamp = date.getTime();
+    let date_1 = new Date(timestamp);
+    const time = date_1.toLocaleTimeString();
+    const exact_date = date_1.toLocaleDateString();
     this.isloading = true;
     const { value, valid, touched } = this.addSongs;
     console.log(value);
@@ -157,6 +176,9 @@ export class DashboardComponent implements OnInit {
           ...value,
           songurl: this.downloadURL,
           imageurl: this.downloadURL_image,
+          timestamp: timestamp,
+          date: exact_date,
+          time: time,
         })
         .then((res) => {
           console.log("Success!");

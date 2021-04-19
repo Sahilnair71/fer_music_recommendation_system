@@ -1,5 +1,5 @@
 <div class="for-forms" *ngIf="suceesfullyUploaded == false">
-  <mat-card mat-elevation-z12>
+  <mat-card mat-elevation-z12 class="formcolor">
     <form [formGroup]="addSongs" class="formblock">
       <mat-form-field appearance="legacy" class="formblock">
         <mat-label>Enter song name..</mat-label>
@@ -11,18 +11,23 @@
         <input matInput placeholder="artist.." formControlName="artist" />
         <mat-icon matSuffix>person</mat-icon>
       </mat-form-field>
+
       <mat-radio-group
         aria-labelledby="example-radio-group-label"
         class="example-radio-group"
         formControlName="type"
       >
-        <mat-radio-button
-          class="example-radio-button"
-          *ngFor="let expression of expressions"
-          [value]="expression"
-        >
-          {{ expression }}
-        </mat-radio-button>
+        <div class="row">
+          <div class="col-xs-4 col-sm-4 col-md-12 col-lg-4">
+            <mat-radio-button
+              class="example-radio-button"
+              *ngFor="let expression of expressions"
+              [value]="expression"
+            >
+              {{ expression }}
+            </mat-radio-button>
+          </div>
+        </div>
       </mat-radio-group>
 
       <br /><br />
@@ -108,5 +113,28 @@
   </mat-card>
 </div>
 
-<!-- accept=".mp3" -->
-<!-- (ngSubmit)="submitForm()" class="for-forms"    "-->
+<!-- showing songs added to the database -->
+<div class="row" *ngIf="showaddedSongs">
+  <div class="for-forms_1 cardfont">
+    <h1>HERE ARE THE ADDED SONGS</h1>
+  </div>
+  <div *ngFor="let song of item">
+    <div class="col col-xs-12 col-sm-12 col-md-6 col-lg-4">
+      <mat-card mat-elevation-z12 class="card-color">
+        <div class="row">
+          <div class="col-xs-6 col-sm-12 col-md-6 col-lg-6">
+            <img [src]="song.imageurl" />
+          </div>
+          <div class="card-content col-xs-6 col-sm-12 col-md-6 col-lg-6">
+            <p>Name:{{ song.song }}</p>
+            <p>Artist:{{ song.artist }}</p>
+            <p>Date added:{{ song.date }}</p>
+            <p>Time:{{ song.time }}</p>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<!-- accept=".mp3"  -->

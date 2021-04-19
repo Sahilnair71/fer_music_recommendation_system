@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~flexboxgrid/dist/flexboxgrid.min.css";
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@900&display=swap");
 html,
 body {
   height: 100%;

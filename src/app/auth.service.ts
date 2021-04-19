@@ -1,3 +1,4 @@
+import { Songs } from "./songs";
 import { Injectable, NgZone } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
@@ -5,6 +6,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import {
   AngularFirestore,
   AngularFirestoreDocument,
+  AngularFirestoreCollection,
 } from "@angular/fire/firestore";
 
 import { User } from "./user";
@@ -15,8 +17,12 @@ import { User } from "./user";
 export class AuthService {
   userData: any;
   userSnapshot: Observable<User>;
+  songSnapshot: AngularFirestoreCollection<Songs>;
   checkuser: any;
   userEmail: any;
+  songlist: Observable<Songs[]>;
+  private itemsCollection: AngularFirestoreCollection<Songs>;
+  items: Observable<Songs[]>;
   constructor(
     public afs: AngularFirestore,
     public afAuth: AngularFireAuth,
@@ -33,6 +39,13 @@ export class AuthService {
         JSON.parse(localStorage.getItem("user"));
       }
     });
+
+    // firebase querey for song
+
+    this.itemsCollection = afs.collection<Songs>("MUSIC", (ref) =>
+      ref.orderBy("timestamp", "desc").limit(7)
+    );
+    this.items = this.itemsCollection.valueChanges();
   }
 
   SignUp(UserVal) {
@@ -113,5 +126,18 @@ export class AuthService {
     userSnapshot.subscribe((res) => {
       console.log(res);
     });
+  }
+
+  getSongs() {
+    // const songVal = this.afs.collection<Songs>("MUSIC");
+    // let songSnapshot = await songVal.valueChanges();
+    // songSnapshot.subscribe((res) => {
+    //   console.log(res);
+
+    // });
+    // console.log(songSnapshot);
+    //   return songSnapshot;
+    // }
+    return this.items;
   }
 }
