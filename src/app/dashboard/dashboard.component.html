@@ -18,7 +18,7 @@
         formControlName="type"
       >
         <div class="row">
-          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="col-xs-6 col-sm-6 col-md-12 col-lg-12">
             <mat-radio-button
               class="example-radio-button"
               *ngFor="let expression of expressions"
@@ -117,10 +117,10 @@
 <div class="for-forms_1 cardfont" *ngIf="showaddedSongs">
   <h1>RECENTLY ADDED SONGS</h1>
 </div>
-<div class="row" *ngIf="showaddedSongs">
+<div class="row">
   <!-- <div > -->
   <div *ngFor="let song of item" class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
-    <mat-card mat-elevation-z12 class="card-color">
+    <mat-card mat-elevation-z12 class="card-color minHeight">
       <div class="row">
         <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
           <img [src]="song.imageurl" />
@@ -136,11 +136,11 @@
   </div>
   <!-- </div> -->
 </div>
-<div class="for-forms_1 cardfont" *ngIf="showaddedSongs">
+<div class="for-forms_1 cardfont">
   <h1>LIST OF SONGS</h1>
 </div>
 
-<div class="row center-xs center-sm center-md center-lg" *ngIf="showaddedSongs">
+<div class="row center-xs center-sm center-md center-lg">
   <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
     <mat-card mat-elevation-z12 class="card-color">
       <mat-card-title> All Songs</mat-card-title>
@@ -165,4 +165,4 @@
   </div>
 </div>
 
-<!-- accept=".mp3"  -->
+<!-- accept=".mp3" *ngIf="showaddedSongs" -->

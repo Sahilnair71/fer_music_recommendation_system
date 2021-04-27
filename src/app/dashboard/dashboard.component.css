@@ -40,8 +40,8 @@
 
 img {
   background-size: cover;
-  height: 90%;
-  width: 90%;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
 }
 .for-forms_1 {
@@ -73,6 +73,9 @@ img {
   font-family: "Raleway", sans-serif;
   font-weight: bold;
 }
+.minHeight {
+  min-height: 300px;
+}
 
 .fontSize {
   font-size: 15px;
@@ -98,7 +101,7 @@ li::before {
     /* height: 100vh; */
     margin-top: 10vh;
     margin-bottom: 5vh;
-    margin-left: 5vh;
-    margin-right: 5vh;
+    margin-left: 20vh;
+    margin-right: 20vh;
   }
 }

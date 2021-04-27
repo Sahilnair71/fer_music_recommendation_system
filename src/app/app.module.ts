@@ -25,6 +25,7 @@ import { VerifymailComponent } from "./verifymail/verifymail.component";
 import { AngularFireStorageModule, BUCKET } from "@angular/fire/storage";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatProgressBarModule } from "@angular/material/progress-bar";
+
 @NgModule({
   declarations: [
     AppComponent,
